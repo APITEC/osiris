@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 // Routes
-import 'home.dart';
+import 'access.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => Pieces()));
+          context, MaterialPageRoute(builder: (context) => Access()));
     });
     super.initState();
   }

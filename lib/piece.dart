@@ -11,6 +11,8 @@ class _PieceState extends State<Piece> {
   TextEditingController description = TextEditingController();
   TextEditingController price = TextEditingController();
 
+  bool image = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +20,7 @@ class _PieceState extends State<Piece> {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            expandedHeight: 200,
+            expandedHeight: 300,
             backgroundColor: Colors.transparent,
             iconTheme: IconThemeData(color: Colors.redAccent),
             title: Text(
@@ -31,16 +33,32 @@ class _PieceState extends State<Piece> {
             ),
             centerTitle: false,
             flexibleSpace: FlexibleSpaceBar(
-              title: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.add_a_photo,
-                    color: Colors.redAccent,
-                  ),
-                ),
-              ),
+              title: !image
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            image = !image;
+                          });
+                        },
+                        icon: Icon(
+                          Icons.add_a_photo,
+                          color: Colors.redAccent,
+                        ),
+                      ),
+                    )
+                  : Container(),
+              background: image
+                  ? ClipRRect(
+                      borderRadius:
+                          BorderRadius.vertical(bottom: Radius.circular(20)),
+                      child: Image.network(
+                        'https://picsum.photos/seed/bla/400/300',
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  : Container(),
             ),
           ),
           SliverPadding(

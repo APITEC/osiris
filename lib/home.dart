@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+// Models
+import 'user.dart';
 
 //Routes
 import 'piece.dart';
@@ -99,9 +103,19 @@ class _PiecesState extends State<Pieces> {
             )
           : EmptyState(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          Provider.of<UserData>(context, listen: false).setUser({
+            'id': 10,
+            'email': 'monica@gmail.com',
+            'first_name': 'Monica',
+            'last_name': 'Garcia',
+            'image': null,
+            'government_id': '3746782364782346',
+            'stamp': '1bc2783cn482b64n71cb6347n1cb'
+          });
+          await Navigator.push(
               context, MaterialPageRoute(builder: (context) => Piece()));
+          setState(() {});
         },
         backgroundColor: Colors.redAccent,
         child: Icon(
